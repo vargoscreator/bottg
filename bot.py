@@ -76,8 +76,8 @@ async def start_handler(message: types.Message, state: FSMContext):
 @dp.callback_query_handler(lambda callback: "back_to_goods_list" in callback.data)
 async def back_handler(callback: types.callback_query):
     try:
-        await bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
         await goods_list(callback.message)
+        await bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
     except Exception as e:
         print(e)
         
