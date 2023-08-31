@@ -16,11 +16,6 @@ storage = MemoryStorage()
 
 dp = Dispatcher(bot, storage=storage)
 
-class Form(StatesGroup):
-
-    name = State()
-    messageuser = State()
-    all_user = State()
 
 
 def goods_list(message):
