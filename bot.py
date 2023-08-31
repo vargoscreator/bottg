@@ -10,7 +10,7 @@ from aiogram import Bot, types
 from aiogram import Bot, Dispatcher
 
 
-bot = Bot(token="TOKENLINKHERE")
+bot = Bot(token="tokenherelink")
 
 storage = MemoryStorage()
 
@@ -34,7 +34,7 @@ def goods_list(message):
                 if x[0] == 1:
                     break
             next = types.InlineKeyboardButton(
-                            f"> Следующая страница <", callback_data=f'next_page_{x[0]}')
+                            f">", callback_data=f'next_page_{x[0]}')
             markup.add(next)
             return bot.send_message(
                     message.chat.id, 'Привет!👋 Рад тебя видеть! :)\nДля приобретения товара - выбери его из списка доступных:', reply_markup=markup)
@@ -103,10 +103,10 @@ async def back_handler(callback: types.callback_query):
             if data > showpage:
                 if int(page) != 0:
                     backpage = types.InlineKeyboardButton(
-                                        f"> Назад <", callback_data=f'next_page_{back_page}')
+                                        f"<", callback_data=f'next_page_{back_page}')
                     markup.add(backpage)
                 next = types.InlineKeyboardButton(
-                                    f"> Следующая страница <", callback_data=f'next_page_{next_page}')
+                                    f">", callback_data=f'next_page_{next_page}')
                 markup.add(next)
                 check_last_page = False
                 break
@@ -115,7 +115,7 @@ async def back_handler(callback: types.callback_query):
                 markup.add(item)
         if check_last_page:
             backpage = types.InlineKeyboardButton(
-                f"> Назад <", callback_data=f'next_page_{back_page}')
+                f"<", callback_data=f'next_page_{back_page}')
             markup.add(backpage)
         await bot.edit_message_reply_markup(
             chat_id=callback.message.chat.id, message_id=callback.message.message_id, reply_markup=markup)
@@ -155,7 +155,7 @@ async def back_handler(callback: types.callback_query):
                         f"Отказатся", callback_data=f'delete_{product_id}')
             markup.add(buygoods)
             backpage = types.InlineKeyboardButton(
-                        f"> Назад <", callback_data=f'back_to_goods_list')
+                        f"<", callback_data=f'back_to_goods_list')
             markup.add(backpage)
             await bot.send_photo(chat_id=callback.message.chat.id, photo=product_photo, caption=f"Вы уже купили {product_name}", reply_markup=markup)
         else:
@@ -163,7 +163,7 @@ async def back_handler(callback: types.callback_query):
                             f"Купить", callback_data=f'buy_{product_id}')
             markup.add(buygoods)
             backpage = types.InlineKeyboardButton(
-                            f"> Назад <", callback_data=f'back_to_goods_list')
+                            f"<", callback_data=f'back_to_goods_list')
             markup.add(backpage)
             await bot.send_photo(chat_id=callback.message.chat.id, photo=product_photo, caption=f"Название: {product_name}\nЦена: {product_price}\n\n{product_descr}", reply_markup=markup)
         await bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
@@ -188,7 +188,7 @@ async def back_handler(callback: types.callback_query):
         connect.commit() 
         markup = types.InlineKeyboardMarkup(row_width=1)
         backpage = types.InlineKeyboardButton(
-                        f"> Назад <", callback_data=f'item_{id__prod}')
+                        f"<", callback_data=f'item_{id__prod}')
         markup.add(backpage)
         await bot.send_message(callback.message.chat.id, f"Вы успешно купили {name__prod}", reply_markup=markup)
         await bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
@@ -214,7 +214,7 @@ async def back_handler(callback: types.callback_query):
         connect.commit() 
         markup = types.InlineKeyboardMarkup(row_width=1)
         backpage = types.InlineKeyboardButton(
-                        f"> Назад <", callback_data=f'item_{id__prod}')
+                        f"<", callback_data=f'item_{id__prod}')
         markup.add(backpage)
         await bot.send_message(callback.message.chat.id, f"Вы успешно отказались от покупки товара {name__prod}.", reply_markup=markup)
         await bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
