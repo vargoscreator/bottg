@@ -48,7 +48,7 @@ def goods_list(message):
 
 
 
-@dp.message_handler(commands="sa", state="*")
+@dp.message_handler(commands="start", state="*")
 async def start_handler(message: types.Message, state: FSMContext):
     try:
         connect = sqlite3.connect('database.db')
